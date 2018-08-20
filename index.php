@@ -3,7 +3,7 @@ $input = json_decode(file_get_contents('php://input'), true);
  print_r($input);
 $senderid = $input['entry'][0]['messaging'][0]['sender']['id'];
 $message = $input['entry'][0]['messaging'][0]['message']['text'];
-$phone_number = '+84989206369';
+$phone_number = '+84908066812';
 $page_access_token="EAAC5ZCbbwnhoBACG96ckZCvNVXCEMNeDFl73sUyBaug60XRsK40KrzuVbc9Bf7mbpSOaWZBWwN7JuKfE97RP3D7xI8nF4bpIIfVwXBsnLl0yJzxhmCZCFbs88TwdOP1sypOG2iU6ZCo15OOpt1KOHM3NZCeuYXXwFsuoIC9RftGQZDZD";
 //API Url
 $url = "https://graph.facebook.com/v2.6/me/messages?access_token=$page_access_token";
