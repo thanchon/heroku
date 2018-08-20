@@ -1,12 +1,14 @@
     <?php 
     $hubVerifyToken = "bot_message_demo";
-    $accessToken = "EAAC5ZCbbwnhoBACG96ckZCvNVXCEMNeDFl73sUyBaug60XRsK40KrzuVbc9Bf7mbpSOaWZBWwN7JuKfE97RP3D7xI8nF4bpIIfVwXBsnLl0yJzxhmCZCFbs88TwdOP1sypOG2iU6ZCo15OOpt1KOHM3NZCeuYXXwFsuoIC9RftGQZDZD";
-    if($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
-        echo $_REQUEST['hub_challenge'];
-        exit;
-    }  else {
-        echo ('Invalid verify token');    
-    }
+    if (isset($_GET['hub_verify_token'])) { 
+	   if ($_GET['hub_verify_token'] === $hubVerifyToken) {
+		   echo $_GET['hub_challenge'];
+		   return;
+	   } else {
+		   echo 'Invalid Verify Token zzzz';
+		   return;
+	   }
+	}
     ?>
     <!-- end menu left -->
     <!-- content right -->
