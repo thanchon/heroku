@@ -3,7 +3,7 @@
     if (isset($_GET['hub_verify_token'])) { 
 	   if ($_GET['hub_verify_token'] === $hubVerifyToken) {
 		   echo $_GET['hub_challenge'];
-		   return;
+		   exit;
 	   } else {
 		   echo 'Invalid Verify Token zzzz';
 		   return;
