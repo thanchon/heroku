@@ -1,17 +1,4 @@
-    <?php 
-    $hubVerifyToken = "bot_message_demo";
-    if (isset($_GET['hub_verify_token'])) { 
-	   if ($_GET['hub_verify_token'] === $hubVerifyToken) {
-		   echo $_GET['hub_challenge'];
-		   exit;
-	   } else {
-		   echo 'Invalid Verify Token zzzz';
-		   return;
-	   }
-	}
-    ?>
-	------------------------------------------------------
-	<?php 
+<?php 
 $input = json_decode(file_get_contents('php://input'), true);
  print_r($input);
 $senderid = $input['entry'][0]['messaging'][0]['sender']['id'];
