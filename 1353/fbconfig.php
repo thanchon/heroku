@@ -16,7 +16,7 @@ use Facebook\HttpClients\FacebookHttpable;
 // init app with app id and secret
 FacebookSession::setDefaultApplication( '204499347086874','22e0219ad722a0587ea41a70c9be7651' );
 // login helper with redirect_uri
-$helper = new FacebookRedirectLoginHelper('https://botasia.herokuapp.com/' );
+$helper = new FacebookRedirectLoginHelper('https://botasia.herokuapp.com/1353/fbconfig.php');
 try {
   $session = $helper->getSessionFromRedirect();
 } catch( FacebookRequestException $ex ) {
