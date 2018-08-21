@@ -8,7 +8,7 @@ session_start();
 <link href="http://www.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> 
  </head>
   <body>
-  <?php if (isset($_SESSION['FBID']) && $_SESSION['FBID']): ?>      <!--  After user login  -->
+  <?php if ($_SESSION['FBID']): ?>      <!--  After user login  -->
 <div class="container">
 <div class="hero-unit">
   <h1>Hello <?php echo $_SESSION['USERNAME']; ?></h1>

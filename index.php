@@ -1,59 +1,40 @@
-<?php 
-$input = json_decode(file_get_contents('php://input'), true);
- print_r($input);
-$senderid = $input['entry'][0]['messaging'][0]['sender']['id'];
-$message = $input['entry'][0]['messaging'][0]['message']['text'];
-$phone_number = '+84989206369';
-$page_access_token="EAAC5ZCbbwnhoBACG96ckZCvNVXCEMNeDFl73sUyBaug60XRsK40KrzuVbc9Bf7mbpSOaWZBWwN7JuKfE97RP3D7xI8nF4bpIIfVwXBsnLl0yJzxhmCZCFbs88TwdOP1sypOG2iU6ZCo15OOpt1KOHM3NZCeuYXXwFsuoIC9RftGQZDZD";
-//API Url
-$url = "https://graph.facebook.com/v2.6/me/messages?access_token=$page_access_token";
-//The JSON data of message (only text message).
-$jsonData = '{
-    "recipient":{
-    "phone_number":"'.$phone_number.'"
-},
-"message":{
-"text":"Chao duc. A check Just check"
-}
-}';
-//call to send message function
- 
-send_message($jsonData,$url);
- 
-function send_message($jsonData,$url)
-{
-
-    //Encode the array into JSON.
-    $jsonDataEncoded = $jsonData; 
-    //Initiate cURL.
-    $ch = curl_init($url); 
-    //Tell cURL that we want to send a POST request.
-    curl_setopt($ch, CURLOPT_POST, 1); 
-    //Attach our encoded JSON string to the POST fields.
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded); 
-    //Set the content type to application/json
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
-    //Execute the request
-    $result = curl_exec($ch); 
-}
+<?php
+session_start(); 
 ?>
-    <!-- end menu left -->
-    <!-- content right -->
-    <div>
-        <h3>Facebook Messenger Box</h3>
-        <!-- Load Facebook SDK for JavaScript -->
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
-        <!-- Your customer chat code -->
-        <div class="fb-customerchat"
-          attribution=setup_tool
-          page_id="473522732832060">
-        </div>
-    </div>
+<!doctype html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <title>Login with Facebook</title>
+<link href="http://www.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> 
+ </head>
+  <body>
+  <?php if ($_SESSION['FBID']): ?>      <!--  After user login  -->
+<div class="container">
+<div class="hero-unit">
+  <h1>Hello <?php echo $_SESSION['USERNAME']; ?></h1>
+  <p>Welcome to "facebook login" tutorial</p>
+  </div>
+<div class="span4">
+ <ul class="nav nav-list">
+<li class="nav-header">Image</li>
+	<li><img src="https://graph.facebook.com/<?php echo $_SESSION['FBID']; ?>/picture"></li>
+<li class="nav-header">Facebook ID</li>
+<li><?php echo  $_SESSION['FBID']; ?></li>
+<li class="nav-header">Facebook fullname</li>
+<li><?php echo $_SESSION['FULLNAME']; ?></li>
+<li class="nav-header">Facebook Email</li>
+<li><?php echo $_SESSION['EMAIL']; ?></li>
+<div><a href="logout.php">Logout</a></div>
+</ul></div></div>
+    <?php else: ?>     <!-- Before login --> 
+<div class="container">
+<h1>Login with Facebook</h1>
+           Not Connected
+<div>
+      <a href="fbconfig.php">Login with Facebook</a></div>
+	 <div> <a href="http://www.krizna.com/general/login-with-facebook-using-php/"  title="Login with facebook">View Post</a>
+	  </div>
+      </div>
+    <?php endif ?>
+  </body>
+</html>
